@@ -1,0 +1,22 @@
+@base = http://localhost:8085
+@user = agent
+@password = demo-pass
+
+### Current identity
+GET {{base}}/api/me
+Authorization: Basic {{user}} {{password}}
+
+### Main workflow action
+POST {{base}}/api/logs
+Authorization: Basic {{user}} {{password}}
+Content-Type: application/json
+
+{
+  "lines": [
+    "ERROR database connection timeout request 123",
+    "ERROR database connection timeout request 456"
+  ]
+}
+
+### Health
+GET {{base}}/actuator/health
